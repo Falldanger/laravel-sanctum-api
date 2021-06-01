@@ -18,7 +18,9 @@ use App\Http\Controllers\ProductController;
 
 Route::resource('products',ProductController::class);
 
-Route::get('/products/search/{name}',[ProductController::class,'search']);
+Route::group(['middleware'=>'auth:sanctum'],function (){
+    Route::get('/products/search/{name}',[ProductController::class,'search']);
+});
 
 //Route::get('/products', [ProductController::class,'index']);
 //
